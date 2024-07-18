@@ -1,53 +1,47 @@
-// public class selection {
-//     public static void main(String[] args)
-//     {  
-//         int array[]={9,4,1,3,2,6,8,7};
-//         int min=array[0];
-//         for(int i=0;i<array.length;i++)
-//         {
-//             if(array[i]<min)
-//             {
-//                 min=array[i];
-//                 int temp=array[i];
-//                 array[i]=min;
-//                 min=temp;
-//             }
-//               }
+public class selection {
 
-//         for(int i=0;i<array.length;i++)
-//         {
-//             System.out.println(array[i]);
-//         }
-        
-//     }
-// }
+    // Function to perform selection sort
+    public static void selection(int[] array) {
+        int n = array.length;
 
+        // One by one move boundary of unsorted subarray
+        for (int i = 0; i < n - 1; i++) {
+            // Find the minimum element in the unsorted array
+            int minIndex = i;
+            for (int j = i + 1; j < n; j++) {
+                if (array[j] < array[minIndex]) {
+                    minIndex = j;
+                }
+            }
 
+            // Swap the found minimum element with the first element
+            int temp = array[minIndex];
+            array[minIndex] = array[i];
+            array[i] = temp;
 
-
-// Update the '_' in the code below
-import java.util.Scanner;
-
-class selection
-{
-	public static void main (String[] args)
-	{
-        Scanner read = new Scanner(System.in);
-        // accept the count of test cases given in the 1st line
-        int t = read.nextInt();
-        
-        // Run a loop to accept 't' inputs
-        for(int i=0; i<t; i++)
-        {
-            // accept 2 integers on the 1st line of each test case
-            int a = read.nextInt();
-            int b = read.nextInt();
-            
-            // accept 1 string on the 2nd line of each test case
-            String s = read.next();
-            
-            // output the 2 integers and 1 string on a single line for each test case
-            System.out.println(a + " " + b + " " + s);
+            // Print the array after each pass for debugging
+            System.out.print("Array after pass " + (i + 1) + ": ");
+            printArray(array);
         }
-	}
+    }
+
+    // Utility function to print the array
+    public static void printArray(int[] array) {
+        for (int value : array) {
+            System.out.print(value + " ");
+        }
+        System.out.println();
+    }
+
+    // Main method to test the algorithm
+    public static void main(String[] args) {
+        int[] array = { 64, 25, 12, 22, 11 };
+        System.out.println("Given Array");
+        printArray(array);
+
+        selection(array);
+
+        System.out.println("\nSorted Array");
+        printArray(array);
+    }
 }
